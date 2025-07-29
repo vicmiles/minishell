@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_expand_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vmileshk <vmileshk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/23 15:33:35 by vmileshk          #+#    #+#             */
+/*   Updated: 2025/04/23 15:34:06 by vmileshk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 bool	ft_valid_char(char c)
@@ -50,9 +62,9 @@ char	*ft_handle_dquotes(char *str, size_t *i)
 	while (str[*i] != '"')
 	{
 		if (str[*i] == '$')
-			res = ft_strjoin_f(ret, ft_handle_dollar(str, i));
+			res = ft_strjoin_f(res, ft_dollar_handle(str, i));
 		else
-			res = ft_strjoin_f(ret, ft_handle_dquote_str(str, i));
+			res = ft_strjoin_f(res, ft_subdquote_handle(str, i));
 	}
 	(*i)++;
 	return (ft_strjoin_f(res, ft_strdup("\"")));

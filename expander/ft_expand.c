@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_expand.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vmileshk <vmileshk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/23 15:34:12 by vmileshk          #+#    #+#             */
+/*   Updated: 2025/05/07 13:43:51 by vmileshk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 char	*ft_dollar_handle(char *str, size_t *i)
@@ -23,7 +35,7 @@ char	*ft_dollar_handle(char *str, size_t *i)
 	while (ft_valid_char(str[*i]))
 		(*i)++;
 	var = ft_substr(str, start, *i - start);
-	env_val = ft_get_envlst_val(var);
+	env_val = ft_envlist_value(var);
 	if (!env_val)
 		return (free(var), ft_strdup(""));
 	return (free(var), ft_strdup(env_val));
@@ -41,7 +53,7 @@ static char	*ft_cmd_expand(char *str)
 		if (str[i] == '\'')
 			res = ft_strjoin_f(res, ft_squote_handle(str, &i));
 		else if (str[i] == '"')
-			res = ft_strjoin_f(res, ft_dquote_handle(str, &i));
+			res = ft_strjoin_f(res, ft_handle_dquotes(str, &i));
 		else if (str[i] == '$')
 			res = ft_strjoin_f(res, ft_dollar_handle(str, &i));
 		else

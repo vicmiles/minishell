@@ -1,6 +1,18 @@
-#include "minishell"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_signals.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vkhut <vkhut@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/23 15:51:06 by vmileshk          #+#    #+#             */
+/*   Updated: 2025/05/07 13:38:22 by vkhut            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static void	ft_sigint_handle(int num)
+#include "minishell.h"
+
+static void	ft_sigint_handler(int num)
 {
 	(void)num;
 	if (g_minishell.signint_child)
